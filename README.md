@@ -1,2 +1,3 @@
-# terraform-aws-lambda-scheduled-task
+# Scheduled lambda task
+
 A Terraform module that creates a lambda for a scheduled task
