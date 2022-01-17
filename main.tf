@@ -1,3 +1,25 @@
+locals {
+  lambda_role_policies = merge(
+    var.lambda_role_policies != null ? var.lambda_role_policies : {},
+    {
+      "ScheduledTaskPolicyLog" = jsonencode({
+        Version : "2012-10-17",
+        Statement = [
+          {
+            Effect = "Allow",
+            Action = [
+              "logs:CreateLogStream",
+              "logs:CreateLogGroup",
+              "logs:PutLogEvents"
+            ],
+            Resource = "*"
+          }
+        ]
+      })
+    }
+  )
+}
+
 module "scheduled_lambda" {
   source = "terraform-aws-modules/lambda/aws"
 
@@ -44,9 +66,18 @@ resource "aws_iam_role" "scheduled_lambda_task" {
 }
 
 resource "aws_iam_role_policy" "scheduled_task" {
-  for_each = var.lambda_role_policies
+  for_each = local.lambda_role_policies
 
   name   = each.key
   role   = aws_iam_role.scheduled_lambda_task.id
   policy = each.value
+}
+
+resource "aws_lambda_permission" "scheduled_task" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = module.scheduled_lambda.lambda_function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.scheduled_lambda_task.arn
+  depends_on    = [module.scheduled_lambda]
 }
