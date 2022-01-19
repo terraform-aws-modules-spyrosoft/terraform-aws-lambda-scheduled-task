@@ -24,6 +24,7 @@ module "scheduled_lambda" {
   source = "terraform-aws-modules/lambda/aws"
 
   function_name = var.lambda_name
+  description   = var.lambda_description
   handler       = var.lambda_handler
   runtime       = var.lambda_runtime
   memory_size   = var.lambda_memory_size

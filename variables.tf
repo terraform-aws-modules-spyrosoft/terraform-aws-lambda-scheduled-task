@@ -12,6 +12,12 @@ variable "lambda_name" {
   default     = null
 }
 
+variable "lambda_description" {
+  description = "A description of the Lambda Function"
+  type        = string
+  default     = null
+}
+
 variable "lambda_handler" {
   description = "Lambda Function entrypoint in your code"
   type        = string
