@@ -118,3 +118,9 @@ variable "scheduled_task_cloudwatch_event_expression" {
   type        = string
   default     = null
 }
+
+variable "scheduled_task_cloudwatch_event_is_enabled" {
+  description = "Whether the rule should be enabled"
+  type        = bool
+  default     = true
+}

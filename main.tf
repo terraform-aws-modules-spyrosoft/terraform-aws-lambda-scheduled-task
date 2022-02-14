@@ -49,6 +49,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_lambda_task" {
   name                = var.scheduled_task_cloudwatch_event_name
   description         = var.scheduled_task_cloudwatch_event_description
   schedule_expression = var.scheduled_task_cloudwatch_event_expression
+  is_enabled          = var.scheduled_task_cloudwatch_event_is_enabled
   tags                = var.tags
   depends_on          = [module.scheduled_lambda]
 }
