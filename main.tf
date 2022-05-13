@@ -31,6 +31,7 @@ module "scheduled_lambda" {
   timeout       = var.lambda_timeout
 
   s3_existing_package = var.lambda_s3_existing_package
+  publish             = var.lambda_publish
 
   tags                  = var.tags
   environment_variables = var.lambda_environment_variables

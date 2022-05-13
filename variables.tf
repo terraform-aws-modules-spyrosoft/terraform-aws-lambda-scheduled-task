@@ -99,6 +99,12 @@ variable "lambda_s3_existing_package" {
   default     = null
 }
 
+variable "lambda_publish" {
+  description = "Whether to publish creation/change as new Lambda Function Version."
+  type        = bool
+  default     = true
+}
+
 # Event variables
 
 variable "scheduled_task_cloudwatch_event_name" {
