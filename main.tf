@@ -21,7 +21,7 @@ locals {
 }
 
 module "scheduled_lambda" {
-  source = "terraform-aws-modules/lambda/aws"
+  source = "terraform-aws-modules-spyrosoft/lambda/aws"
 
   function_name = var.lambda_name
   description   = var.lambda_description
@@ -31,7 +31,6 @@ module "scheduled_lambda" {
   timeout       = var.lambda_timeout
 
   s3_existing_package = var.lambda_s3_existing_package
-  publish             = var.lambda_publish
 
   tags                  = var.tags
   environment_variables = var.lambda_environment_variables

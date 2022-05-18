@@ -9,6 +9,11 @@ output "lambda_name" {
   value       = module.scheduled_lambda.lambda_function_name
 }
 
+output "lambda_function_source_code_hash" {
+  description = "Base64-encoded representation of raw SHA-256 sum of the zip file"
+  value       = try(module.scheduled_lambda.lambda_function_source_code_hash, "")
+}
+
 # IAM Role
 output "lambda_role_arn" {
   description = "The ARN of the IAM role created for the Lambda Function"
