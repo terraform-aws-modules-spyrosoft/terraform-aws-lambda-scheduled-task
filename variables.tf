@@ -54,6 +54,12 @@ variable "lambda_cloudwatch_logs_retention_in_days" {
   default     = null
 }
 
+variable "layers" {
+  description = "List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function."
+  type        = list(string)
+  default     = null
+}
+
 # The role and policies of the Lambda
 
 variable "lambda_role_name" {

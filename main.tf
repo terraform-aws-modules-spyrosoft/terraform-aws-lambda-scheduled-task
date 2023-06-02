@@ -27,6 +27,7 @@ module "scheduled_lambda" {
   description   = var.lambda_description
   handler       = var.lambda_handler
   runtime       = var.lambda_runtime
+  layers        = var.layers
   memory_size   = var.lambda_memory_size
   timeout       = var.lambda_timeout
 
